@@ -1,3 +1,61 @@
-<h1>
-  {{title}}
-</h1>
+<h1>1) Attribute Directives</h1>
+<div>
+  <h2>1.A) Default Attribute Directives: ngClass / ngStyle</h2>
+  <div class="row">
+    <div [ngClass]="{'col-md-4': true, border: true, background: true, block: true}"></div>
+    <div [class.col-md-4]="true" [class.background2]="true" [class.block]="true"></div>
+    <div class="col-md-4 block" [ngStyle]="{'background-color': 'red'}"></div>
+  </div>
+  <hr>
+  <h2>1.B) Custom Attribute Directive</h2>
+  <div class="block" [dirHighlight]="'green'" [defaultColor]="'red'">Some text</div>
+</div>
+<hr>
+<hr>
+<h1>2) Structural Directive</h1>
+<div>
+  <h2>2.A) Default Structural Directives: *ngIf / *ngFor / ngSwitch</h2>
+  <div>
+    <h3>2.A.1) *ngIf</h3>
+      <div class="row">
+      <div class="col-md-3" *ngIf="switch">Conditional Text #1</div>
+      <template [ngIf]="!switch">
+        <div class="col-md-3">Conditional Text #2</div>
+      </template>
+      <div class="col-md-2"><button (click)="onSwitch()">Switch</button></div>
+    </div>
+    <hr>
+    <h3>2.B.2) *ngFor</h3>
+    <ul>
+      <li *ngFor="let item of items; let i = index">{{item}} - (Index: {{i}})</li>
+    </ul>
+    <hr>
+    <h3>2.B.3) ngSwitch</h3>
+    <div class="row">
+      <div class="col-md-3">
+        <input type="number" min="1" max="100" [(ngModel)]="value">
+      </div>
+      <div class="col-md-3" [ngSwitch]="value">
+        <p *ngSwitchCase="10">10</p>
+        <p *ngSwitchCase="100">100</p>
+        <p *ngSwitchDefault>Default</p>
+      </div>
+      <div class="col-md-3">
+        <p [ngSwitch]="value">
+          <template [ngSwitchCase]="10">Value = 10</template>
+          <template [ngSwitchCase]="100">Value = 100</template>
+          <template ngSwitchDefault>Default</template>
+        </p>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <h2>2.A) Custom Structural Directives</h2>
+  <div *dirUnless="switch" class="col-md-3">
+    Conditional Text #3
+  </div>
+  <div class="col-md-2"><button (click)="onSwitch()">Switch</button></div>
+</div>
+
+
+<br><br>
